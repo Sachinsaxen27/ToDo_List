@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <div class="navbar">
+        <span> <a href="index.html">TODO DEMO</a></span>
+        <span><a href="/ADDtodo.html">Add TODO</a></span>
+        <span><a href="TODOLIST.html"> TODO List</a></span>
+    </div>
+    <div class="todowelcome">
+        <div class="todoinsidewelcome">
+            <h3>Add ToDo</h3>
+            <div class="addtodoinput">
+                <input type="text" class="taskinput" placeholder="Yout task" id="yourtask">
+                <button class="addtodobutton2" onclick="addtask()">Add Todo</button>
+            </div>
+        </div>
+    </div>
+    <script>
+        const taskarry =JSON.parse(localStorage.getItem('taskarray')) || [];;
+        function addtask() {
+            const task = document.getElementById('yourtask')
+            if (task.value.trim() !== '') {
+                taskarry.push(task.value)
+                localStorage.setItem('taskarray', JSON.stringify(taskarry))
+                task.value = ''
+            } else {
+                console.log('Task cannot be empty')
+            }
+        }
+    </script>
+</body>
+
+</html>
