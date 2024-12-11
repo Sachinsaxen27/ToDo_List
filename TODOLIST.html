@@ -6,6 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <link rel="stylesheet" href="style.css">
+
 </head>
 
 <body>
@@ -18,20 +19,52 @@
         <div class="todoinsidewelcome">
             <h3>Your ToDo</h3>
             <div id="yourtodooutput">
+
             </div>
+            <div class="secondoutput"></div>
+
         </div>
     </div>
     <script>
         const output = JSON.parse(localStorage.getItem("taskarray")) || []
         const parent = document.getElementById('yourtodooutput')
-        for (let i = 0; i <= output.length - 1; i++) {
+        if (output.length === 0) {
             const newdiv = document.createElement("div")
-            newdiv.textContent =i+1+"."+"   "+ output[i]
+            newdiv.textContent = "No Task Available"
             newdiv.classList.add('taskitem')
             parent.appendChild(newdiv)
+        } else {
+            for (let i = 0; i <= output.length - 1; i++) {
+                const newdiv = document.createElement("div")
+                newdiv.textContent = i + 1 + "." + "   " + output[i]
+                const deleted = document.createElement('button')
+                deleted.innerHTML = ' <i class="fa-solid fa-xmark"></i>'
+                deleted.classList.add('delete-btn')
+                newdiv.classList.add('taskitem')
+                newdiv.setAttribute('data-index', `${i}`)
+                deleted.setAttribute('id', `task${i + 1}`)
+                newdiv.appendChild(deleted)
+                parent.appendChild(newdiv)
+            }
         }
+        const parents = document.querySelectorAll('.taskitem');
 
+        let a = 0
+        parents.forEach(todo => {
+            todo.addEventListener('click', function (event) {
+                if (event.currentTarget.tagName === 'DIV') {
+                    event.currentTarget.remove()
+                    a = event.currentTarget.getAttribute('data-index')
+                }
+                console.log(a)
+                output.splice(a, 1)
+                localStorage.setItem('taskarray', JSON.stringify(output))
+                reRendertask()
+            })
+            // newarr.push(todo.textContent)
+        })
     </script>
+    <script src="https://kit.fontawesome.com/231d32e1fe.js" crossorigin="anonymous"></script>
 </body>
 
 </html>

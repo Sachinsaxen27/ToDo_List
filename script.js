@@ -18,6 +18,4 @@ function displayoutput() {
         newdiv.textContent=taskarry[i]
         parent.appendChild(newdiv)
     }
-
 }
-{/* <input class="taskinput" id="yourpendingtask" readonly></input> */ }
