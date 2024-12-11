@@ -28,7 +28,11 @@
         function addtask() {
             const task = document.getElementById('yourtask')
             if (task.value.trim() !== '') {
-                taskarry.push(task.value)
+                if(taskarry.includes(task.value)){
+                    console.log('Already exits')
+                }else{
+                    taskarry.push(task.value)
+                }
                 localStorage.setItem('taskarray', JSON.stringify(taskarry))
                 task.value = ''
             } else {
