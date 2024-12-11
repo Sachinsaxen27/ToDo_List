@@ -53,7 +53,11 @@ body {
     height: 32px;
     border-radius: 7px;
     color: floralwhite;
+<<<<<<< HEAD
     margin-bottom: 10px;
+=======
+    margin-bottom:10px
+>>>>>>> bc208f4aec850a8a0a43a746d8783c65c38befd7
     transition: width 0.5s, height 0.5s, background-color 0.5s, color 1s;
     transition-timing-function: ease-in-out;
 }
